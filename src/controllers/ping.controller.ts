@@ -1,5 +1,11 @@
 import { Request, Response } from "express";
+import { InternalServerError } from "../utils/app.error";
 
 export const pingHandler = (req: Request, res: Response): void => {
-  res.send("pong");
+  try {
+    console.log(req.body);
+    res.send("pong");
+  } catch (error) {
+    throw new InternalServerError("Something went wrong");
+  }
 };
